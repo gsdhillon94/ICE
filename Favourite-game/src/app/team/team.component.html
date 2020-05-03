@@ -1,1 +1,9 @@
-<p>team works!</p>
+<div class="title">Select Favourite Team</div>
+<div
+  *ngFor="let team of teams"
+  class="teams"
+  [ngClass]="{ favourite: isFav(team.name) }"
+  (click)="onTeamSelect(team, $event)"
+>
+  {{ team.name }} ({{ team.abbrev }})
+</div>

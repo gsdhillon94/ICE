@@ -1,3 +1,17 @@
 body {
-    padding-top: 56px;
-  }
+  padding-top: 56px;
+}
+
+.bg-blue {
+  background-color: blue;
+}
+.bg-yellow {
+  background-color: yellow;
+}
+.bg-red {
+  background-color: red;
+}
+.no-pad-h {
+  padding-left: 0px;
+  padding-right: 0px;
+}

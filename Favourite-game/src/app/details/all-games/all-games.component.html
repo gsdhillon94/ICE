@@ -1,0 +1,18 @@
+<div class="col-sm-12">All games played by {{ favTeam.name }}</div>
+<div class="col-sm-12">
+  <table>
+    <tr>
+      <th>Firstname</th>
+      <th>Lastname</th>
+      <th>Age</th>
+    </tr>
+
+    <div *ngFor="let team of getAllMatches()">
+      <tr>
+        <td>{{ team.hteam }}</td>
+        <td>{{ team.ateam }}</td>
+        <td>50</td>
+      </tr>
+    </div>
+  </table>
+</div>
