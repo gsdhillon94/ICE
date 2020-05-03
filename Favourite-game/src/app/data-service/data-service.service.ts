@@ -2,6 +2,7 @@ import { Injectable } from "@angular/core";
 import * as games from "../data-service/game/previous-gamedata.json";
 import * as teams from "../data-service/team/teams.json";
 import * as nextGames from "../data-service/next-matches/next-matches.json";
+
 @Injectable({
   providedIn: "root",
 })
@@ -30,12 +31,12 @@ export class DataServiceService {
   }
 
   getUpcomingMatches(id) {
-    console.log('upComingMatches', this.upComingMatches.games);
+    console.log("upComingMatches", this.upComingMatches.games);
     const matches = this.upComingMatches.games
-                      .filter(m => m.ateamid == id || m.hteamid == id)
-                      .sort((a, b) => b.date - a.date)
-                      .slice(0, 5); 
-    console.log('matches', matches);
+      .filter((m) => m.ateamid == id || m.hteamid == id)
+      .sort((a, b) => b.date - a.date)
+      .slice(0, 5);
+    console.log("matches", matches);
     return matches;
   }
 
