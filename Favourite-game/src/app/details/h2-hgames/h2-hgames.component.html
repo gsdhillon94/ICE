@@ -1,1 +1,16 @@
-<p>h2-hgames works!</p>
+<span>select rival team</span>
+<select (change)="onOptionsSelected($event)" [value]="select">
+  <option *ngFor="let team of rivalTeams" [value]="team.name">
+    {{ team.name }}
+  </option>
+</select>
+<div *ngIf="rivalTeam != ''" class="col-sm-12">
+  <div class="row">
+    <div class="col-sm-4 heading">Winning team</div>
+    <div class="col-sm-4 heading">Year</div>
+  </div>
+  <div class="row" *ngFor="let team of getAllMatches()">
+    <div class="col-sm-4 value">{{ team.winner }}</div>
+    <div class="col-sm-4 value">{{ team.year }}</div>
+  </div>
+</div>

@@ -8,14 +8,22 @@ import { DataServiceService } from "../../data-service/data-service.service";
 })
 export class AllGamesComponent implements OnInit {
   constructor(private data: DataServiceService) {}
-  favTeam;
+  favTeam: string;
   ngOnInit() {
-    this.favTeam = this.data.getFavTeam();
+    this.favTeam = this.data.getFavTeam().name;
   }
 
   getAllMatches() {
-    let data = this.data.getAllMatches().games;
-    console.log(data);
+    let data = [{}];
+    let x = 0;
+    let y = 0;
+    this.data.getAllMatches().games.forEach((i) => {
+      if (i.hteam == this.favTeam || i.ateam == this.favTeam) {
+        data[y] = i;
+        y++;
+      }
+      x++;
+    });
 
     return data;
   }
