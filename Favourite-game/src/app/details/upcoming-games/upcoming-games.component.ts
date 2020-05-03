@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DataServiceService } from 'src/app/data-service/data-service.service';
 
 @Component({
   selector: 'app-upcoming-games',
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UpcomingGamesComponent implements OnInit {
 
-  constructor() { }
-
+  constructor(private dataService: DataServiceService) { }
+ 
+  public matches =[];
   ngOnInit() {
+    this.matches = this.dataService.getUpcomingMatches(this.dataService.favouriteTeam.id);
+    console.log('matches:', this.matches);
   }
 
 }
+

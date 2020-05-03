@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import * as games from "../data-service/game/previous-gamedata.json";
 import * as teams from "../data-service/team/teams.json";
-
+import * as nextGames from "../data-service/next-matches/next-matches.json";
 @Injectable({
   providedIn: "root",
 })
@@ -14,6 +14,7 @@ export class DataServiceService {
   };
 
   allMatches = (games as any).default;
+  upComingMatches = (nextGames as any).default;
   allTeams = (teams as any).default;
   constructor() {}
 
@@ -26,6 +27,16 @@ export class DataServiceService {
 
   getAllMatches() {
     return this.allMatches;
+  }
+
+  getUpcomingMatches(id) {
+    console.log('upComingMatches', this.upComingMatches.games);
+    const matches = this.upComingMatches.games
+                      .filter(m => m.ateamid == id || m.hteamid == id)
+                      .sort((a, b) => b.date - a.date)
+                      .slice(0, 5); 
+    console.log('matches', matches);
+    return matches;
   }
 
   getAllRivalTeams(teamName) {
