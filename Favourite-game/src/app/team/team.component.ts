@@ -24,8 +24,6 @@ export class TeamComponent implements OnInit {
   }
 
   isFav(name) {
-    console.log(this.favTeam);
-
     if (this.favTeam != null) {
       if (name === this.favTeam.name) {
         return true;

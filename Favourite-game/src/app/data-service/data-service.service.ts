@@ -31,12 +31,11 @@ export class DataServiceService {
   }
 
   getUpcomingMatches(id) {
-    console.log("upComingMatches", this.upComingMatches.games);
     const matches = this.upComingMatches.games
       .filter((m) => m.ateamid == id || m.hteamid == id)
       .sort((a, b) => b.date - a.date)
       .slice(0, 5);
-    console.log("matches", matches);
+
     return matches;
   }
 

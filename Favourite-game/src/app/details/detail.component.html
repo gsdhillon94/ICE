@@ -46,7 +46,7 @@
     <app-h2-hgames></app-h2-hgames>
   </div>
   <div class="col-sm-12" *ngIf="activeTab === 'Upcoming Games'">
-    <app-upcoming-games></app-upcoming-games>
+    <app-upcoming-games [favouriteTeam]="favouriteTeam"></app-upcoming-games>
   </div>
   <div class="col-sm-12" *ngIf="activeTab === 'Games Nearby'">
     <app-nearby-venue></app-nearby-venue>
