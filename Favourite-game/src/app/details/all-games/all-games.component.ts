@@ -1,5 +1,6 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, Input } from "@angular/core";
 import { DataServiceService } from "../../data-service/data-service.service";
+import { Team } from "src/app/dashboard/team";
 
 @Component({
   selector: "app-all-games",
@@ -8,17 +9,18 @@ import { DataServiceService } from "../../data-service/data-service.service";
 })
 export class AllGamesComponent implements OnInit {
   constructor(private data: DataServiceService) {}
-  favTeam: string;
-  ngOnInit() {
-    this.favTeam = this.data.getFavTeam().name;
-  }
+  @Input() favouriteTeam: Team;
+  ngOnInit() {}
 
   getAllMatches() {
     let data = [{}];
     let x = 0;
     let y = 0;
     this.data.getAllMatches().games.forEach((i) => {
-      if (i.hteam == this.favTeam || i.ateam == this.favTeam) {
+      if (
+        i.hteam == this.favouriteTeam.name ||
+        i.ateam == this.favouriteTeam.name
+      ) {
         data[y] = i;
         y++;
       }

@@ -22,3 +22,9 @@
   font-weight: 700;
   color: #ff0000;
 }
+.select-team-heading {
+  text-align: center;
+  font-weight: 700;
+  padding: 10rem;
+  font-size: 3rem;
+}

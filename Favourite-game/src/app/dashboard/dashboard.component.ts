@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
-import { Teams } from "./team";
+import { DataServiceService } from "../data-service/data-service.service";
+import { Team } from "./team";
 
 @Component({
   selector: "app-dashboard",
@@ -9,9 +10,8 @@ import { Teams } from "./team";
 })
 export class DashboardComponent implements OnInit {
   private apiUrl: string = "https://api.squiggle.com.au/?q=teams";
-  public data: Teams;
-
-  constructor() {}
+  favouriteTeam: Team;
+  constructor(private dataservice: DataServiceService) {}
 
   // ngOnInit() {
   // this.http.get<Teams>(this.apiUrl).subscribe((data: Teams) => {
@@ -26,4 +26,9 @@ export class DashboardComponent implements OnInit {
   // }
 
   ngOnInit() {}
+  setfavouriteTeam(event) {
+    console.log(event);
+    this.favouriteTeam = event;
+    this.dataservice.setFavTeam(this.favouriteTeam);
+  }
 }

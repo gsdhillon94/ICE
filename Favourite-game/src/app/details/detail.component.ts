@@ -1,5 +1,6 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, Input, SimpleChanges } from "@angular/core";
 import { DataServiceService } from "../data-service/data-service.service";
+import { Team } from "../dashboard/team";
 
 @Component({
   selector: "app-detail",
@@ -8,17 +9,9 @@ import { DataServiceService } from "../data-service/data-service.service";
 })
 export class DetailComponent implements OnInit {
   constructor(private dataservice: DataServiceService) {}
-  favouriteTeam = {
-    logo: "",
-    id: 2,
-    abbrev: "ADE",
-    name: "Adelaide",
-  };
+  @Input() favouriteTeam: Team;
   activeTab = "All Games";
-  ngOnInit() {
-    // this.favouriteTeam = this.dataservice.favouriteTeam;
-    // console.log("fave team", this.favouriteTeam);
-  }
+  ngOnInit() {}
 
   setActive(event) {
     this.activeTab = event.target.value;

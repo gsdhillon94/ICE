@@ -1,49 +1,54 @@
-<div class="col-sm-12 favTeam">
-  <h1>{{ favouriteTeam.name }}</h1>
+<div *ngIf="favouriteTeam == null" class="select-team-heading">
+  Select a Team to Begin
 </div>
-<div class="col-sm-12 button-nav">
-  <button
-    class="nav-button"
-    value="All Games"
-    [ngClass]="{ selected: isSelected('All Games') }"
-    (click)="setActive($event)"
-  >
-    All Games
-  </button>
-  <button
-    class="nav-button"
-    value="H2H Games"
-    [ngClass]="{ selected: isSelected('H2H Games') }"
-    (click)="setActive($event)"
-  >
-    H2H Games
-  </button>
-  <button
-    class="nav-button"
-    value="Upcoming Games"
-    [ngClass]="{ selected: isSelected('Upcoming Games') }"
-    (click)="setActive($event)"
-  >
-    Upcoming Games
-  </button>
-  <button
-    class="nav-button"
-    value="Games Nearby"
-    [ngClass]="{ selected: isSelected('Games Nearby') }"
-    (click)="setActive($event)"
-  >
-    Games Nearby
-  </button>
-</div>
-<div class="col-sm-12" *ngIf="activeTab === 'All Games'">
-  <app-all-games></app-all-games>
-</div>
-<div class="col-sm-12" *ngIf="activeTab === 'H2H Games'">
-  <app-h2-hgames></app-h2-hgames>
-</div>
-<div class="col-sm-12" *ngIf="activeTab === 'Upcoming Games'">
-  <app-upcoming-games></app-upcoming-games>
-</div>
-<div class="col-sm-12" *ngIf="activeTab === 'Games Nearby'">
-  <app-nearby-venue></app-nearby-venue>
+<div *ngIf="favouriteTeam != null">
+  <div class="col-sm-12 favTeam">
+    <h1>{{ favouriteTeam.name }}</h1>
+  </div>
+  <div class="col-sm-12 button-nav">
+    <button
+      class="nav-button"
+      value="All Games"
+      [ngClass]="{ selected: isSelected('All Games') }"
+      (click)="setActive($event)"
+    >
+      All Games
+    </button>
+    <button
+      class="nav-button"
+      value="H2H Games"
+      [ngClass]="{ selected: isSelected('H2H Games') }"
+      (click)="setActive($event)"
+    >
+      H2H Games
+    </button>
+    <button
+      class="nav-button"
+      value="Upcoming Games"
+      [ngClass]="{ selected: isSelected('Upcoming Games') }"
+      (click)="setActive($event)"
+    >
+      Upcoming Games
+    </button>
+    <button
+      class="nav-button"
+      value="Games Nearby"
+      [ngClass]="{ selected: isSelected('Games Nearby') }"
+      (click)="setActive($event)"
+    >
+      Games Nearby
+    </button>
+  </div>
+  <div class="col-sm-12" *ngIf="activeTab === 'All Games'">
+    <app-all-games [favouriteTeam]="favouriteTeam"></app-all-games>
+  </div>
+  <div class="col-sm-12" *ngIf="activeTab === 'H2H Games'">
+    <app-h2-hgames></app-h2-hgames>
+  </div>
+  <div class="col-sm-12" *ngIf="activeTab === 'Upcoming Games'">
+    <app-upcoming-games></app-upcoming-games>
+  </div>
+  <div class="col-sm-12" *ngIf="activeTab === 'Games Nearby'">
+    <app-nearby-venue></app-nearby-venue>
+  </div>
 </div>
