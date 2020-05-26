@@ -1,5 +1,6 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, Input, SimpleChanges } from "@angular/core";
 import { DataServiceService } from "../../data-service/data-service.service";
+import { Team } from "src/app/dashboard/team";
 
 @Component({
   selector: "app-nearby-venue",
@@ -7,6 +8,7 @@ import { DataServiceService } from "../../data-service/data-service.service";
   styleUrls: ["./nearby-venue.component.css"],
 })
 export class NearbyVenueComponent implements OnInit {
+  @Input() favouriteTeam: Team;
   constructor(private data: DataServiceService) {}
   matches;
   ngOnInit() {
@@ -27,7 +29,10 @@ export class NearbyVenueComponent implements OnInit {
   }
 
   getVenues() {
-    this.matches = this.data.getUpcomingMatches(this.data.favouriteTeam.id);
-    console.log(this.matches);
+    this.matches = this.data.getUpcomingMatches(this.favouriteTeam.id);
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    this.matches = this.data.getUpcomingMatches(this.favouriteTeam.id);
   }
 }

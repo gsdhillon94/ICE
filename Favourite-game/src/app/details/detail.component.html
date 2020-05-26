@@ -49,6 +49,6 @@
     <app-upcoming-games [favouriteTeam]="favouriteTeam"></app-upcoming-games>
   </div>
   <div class="col-sm-12" *ngIf="activeTab === 'Games Nearby'">
-    <app-nearby-venue></app-nearby-venue>
+    <app-nearby-venue [favouriteTeam]="favouriteTeam"></app-nearby-venue>
   </div>
 </div>
