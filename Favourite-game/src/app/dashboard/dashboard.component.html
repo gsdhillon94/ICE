@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" *ngIf="favouriteTeam == null">
   <div class="row text-center" *ngIf="teams">
     <div class="col-lg-3 col-md-6 mb-4" *ngFor="let team of teams">
       <div class="card h-100">
@@ -12,7 +12,7 @@
           <p class="card-text">{{ team.id }} - {{ team.abbrev }}</p>
         </div>
         <div class="card-footer">
-          <button class="btn btn-primary" (click)="setFavTeam2(team)">
+          <button class="btn btn-primary" (click)="setfavouriteTeam(team)">
             Select
           </button>
         </div>

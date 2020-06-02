@@ -33,7 +33,8 @@ export class DashboardComponent implements OnInit {
     this.favouriteTeam = team;
   }
 
-  setfavouriteTeam(event) {
-    this.favouriteTeam = event;
+  setfavouriteTeam(team) {
+    this.dataservice.favTeam(team);
+    this.favouriteTeam = team;
   }
 }

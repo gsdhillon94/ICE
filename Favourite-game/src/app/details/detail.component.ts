@@ -18,6 +18,7 @@ export class DetailComponent implements OnInit {
   getFavTeam() {
     this.dataservice.favouriteTeam.subscribe((team) => {
       this.favouriteTeam = team;
+      console.log(this.favouriteTeam);
     });
   }
   ngOnInit() {}
