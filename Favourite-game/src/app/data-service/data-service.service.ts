@@ -4,7 +4,13 @@ import { Game } from "./game/game";
 import * as nextGames from "../data-service/next-matches/next-matches.json";
 import { Subject, Observable } from "rxjs";
 import { HttpClient } from "@angular/common/http";
+import { Tips } from "../tips";
 import { map } from "rxjs/operators";
+import { of, from } from "rxjs";
+import { Teams } from "../teams";
+import { AbstractWebDriver } from "protractor/built/browser";
+import { Standings } from "../standings";
+import { isNgTemplate } from "@angular/compiler";
 
 @Injectable({
   providedIn: "root",
@@ -33,6 +39,115 @@ export class DataServiceService {
 
   getAllMatches() {
     return this.allMatches;
+  }
+
+  getStandings(): Observable<Standings[]> {
+    return this.http
+      .get("https://api.squiggle.com.au/?q=standings")
+      .pipe(
+        map((data: any) =>
+          data.standings.map(
+            (item: any) =>
+              new Standings(
+                item.goals_against,
+                item.id,
+                item.rank,
+                item.behinds_against,
+                item.pts,
+                item.behinds_for,
+                item.draws,
+                item.forr,
+                item.wins,
+                item.against,
+                item.losses,
+                item.name,
+                item.played,
+                item.goals_for,
+                item.percentage
+              )
+          )
+        )
+      );
+  }
+
+  getAllTeamsHttp(): Observable<Teams[]> {
+    return this.http
+      .get("https://api.squiggle.com.au/?q=teams")
+      .pipe(
+        map((data: any) =>
+          data.teams.map(
+            (item: any) => new Teams(item.logo, item.id, item.abbrev, item.name)
+          )
+        )
+      );
+  }
+
+  getTips(): Observable<Tips[]> {
+    return this.http
+      .get("https://api.squiggle.com.au/?q=tips;year=2019;round=20")
+      .pipe(
+        map((data: any) =>
+          data.tips.map(
+            (item) =>
+              new Tips(
+                item.hteamid,
+                item.tip,
+                item.ateamid,
+                item.year,
+                item.venue,
+                item.tipteamid,
+                item.sourceid,
+                item.date,
+                item.source,
+                item.ateam,
+                item.round,
+                item.confidence,
+                item.correct,
+                item.gameid,
+                item.updated,
+                item.margin,
+                item.hconfidence,
+                item.err,
+                item.bits,
+                item.hteam
+              )
+          )
+        )
+      );
+  }
+
+  getTipsPast(): Observable<Tips[]> {
+    return this.http
+      .get("https://api.squiggle.com.au/?q=tips;year=2018;source=1")
+      .pipe(
+        map((data: any) =>
+          data.tips.map(
+            (item) =>
+              new Tips(
+                item.hteamid,
+                item.tip,
+                item.ateamid,
+                item.year,
+                item.venue,
+                item.tipteamid,
+                item.sourceid,
+                item.date,
+                item.source,
+                item.ateam,
+                item.round,
+                item.confidence,
+                item.correct,
+                item.gameid,
+                item.updated,
+                item.margin,
+                item.hconfidence,
+                item.err,
+                item.bits,
+                item.hteam
+              )
+          )
+        )
+      );
   }
 
   setAllMatches() {
