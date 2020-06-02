@@ -12,6 +12,9 @@ import { AllGamesComponent } from "./details/all-games/all-games.component";
 import { H2HGamesComponent } from "./details/h2-hgames/h2-hgames.component";
 import { UpcomingGamesComponent } from "./details/upcoming-games/upcoming-games.component";
 import { NearbyVenueComponent } from "./details/nearby-venue/nearby-venue.component";
+import { PredictionsComponent } from './details/predictions/predictions.component';
+import { PastPredictionsComponent } from './details/past-predictions/past-predictions.component';
+import { StandingsComponent } from './details/standings/standings.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +26,11 @@ import { NearbyVenueComponent } from "./details/nearby-venue/nearby-venue.compon
     H2HGamesComponent,
     UpcomingGamesComponent,
     NearbyVenueComponent,
+    PredictionsComponent,
+    PastPredictionsComponent,
+    StandingsComponent,
+    
+    
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule],
   providers: [],

@@ -9,6 +9,7 @@ import { Team } from "../dashboard/team";
 })
 export class DetailComponent implements OnInit {
   constructor(private dataservice: DataServiceService) {}
+  
   @Input() favouriteTeam: Team;
   activeTab = "All Games";
   ngOnInit() {}

@@ -19,15 +19,15 @@ export class StandingsComponent implements OnInit {
     this.getStandings(this.favouriteTeam.id);
   }
 
-  // getStandings(id:number): void{
-  //   this.dataService.getStandings().subscribe(
-  //     temp =>
-  //     this.Standings=temp.filter(
-  //       x=>{
-  //         return x.id == id ;
-  //       }
-  //     )
-  //   )
-  // }
+  getStandings(id:number): void{
+    this.dataService.getStandings().subscribe(
+      temp =>
+      this.Standings=temp.filter(
+        x=>{
+          return x.id == id ;
+        }
+      )
+    )
+  }
 
 }
