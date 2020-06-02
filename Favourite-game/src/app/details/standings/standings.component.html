@@ -1,0 +1,13 @@
+<p>standings works!</p>
+
+<p *ngIf='favouriteTeam'> {{favouriteTeam.name}} </p>
+
+<table class="table" *ngIf ="Standings">
+        
+    
+    <tr *ngFor='let x of Standingss'> 
+            <td>{{x.name}}</td>
+            <td>{{x.percentage}}</td>
+            <td>{{x.forr}}</td>
+    </tr>
+</table>

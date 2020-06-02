@@ -1,0 +1,17 @@
+<h2>Future Predictions</h2>
+<h3> {{tips[1].hteam}} VS {{tips[1].ateam}} </h3>
+<table class="table" *ngIf ="tips">
+        
+        <caption> {{tips[1].hteam}} VS {{tips[1].ateam}} </caption>
+        <tr>
+                <th>Source</th>
+                <th>Confidence</th>
+                <th>Tip</th>
+        </tr>
+
+        <tr *ngFor='let x of tips'> 
+                <td>{{x.source}}</td>
+                <td>{{x.confidence}}</td>
+                <td>{{x.tip}}</td>
+        </tr>
+</table>
