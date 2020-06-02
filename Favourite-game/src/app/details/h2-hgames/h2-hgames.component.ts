@@ -11,7 +11,7 @@ export class H2HGamesComponent implements OnInit {
   rivalTeams;
   rivalTeam = "";
   ngOnInit() {
-    this.rivalTeams = this.data.getAllRivalTeams(this.data.favouriteTeam.name);
+    this.rivalTeams = this.data.getAllRivalTeams(this.data.favouriteTeam);
   }
 
   onOptionsSelected(event) {
@@ -20,9 +20,6 @@ export class H2HGamesComponent implements OnInit {
   }
 
   getAllMatches() {
-    return this.data.getMatchesRivals(
-      this.rivalTeam,
-      this.data.favouriteTeam.name
-    );
+    return this.data.getMatchesRivals(this.rivalTeam, this.data.favouriteTeam);
   }
 }

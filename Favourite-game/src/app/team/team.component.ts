@@ -1,5 +1,4 @@
 import { Component, OnInit, Output, EventEmitter } from "@angular/core";
-import * as teamData from "../data-service/team/teams.json";
 import { DataServiceService } from "../data-service/data-service.service";
 import { Team } from "../dashboard/team";
 
@@ -9,21 +8,36 @@ import { Team } from "../dashboard/team";
   styleUrls: ["./team.component.css"],
 })
 export class TeamComponent implements OnInit {
-  @Output() favouriteTeam = new EventEmitter<Team>();
-  constructor(private dataservice: DataServiceService) {}
-  teams;
+  favouriteTeam: Team;
+  allTeams: Team[];
+  constructor(private dataservice: DataServiceService) {
+    this.getTeams();
+  }
+  teams: Team[];
   favTeam: Team;
 
   ngOnInit() {
-    this.teams = teamData.teams;
+    // this.teams = teamData.teams;
   }
 
-  onTeamSelect(team, event) {
+  getTeams() {
+    this.dataservice.getTeams().subscribe((data) => {
+      this.setAllTeams(data);
+    });
+  }
+
+  setAllTeams(data) {
+    this.allTeams = data;
+  }
+
+  onTeamSelect(team) {
     this.favTeam = team;
-    this.favouriteTeam.emit(this.favTeam);
+    this.dataservice.favTeam(team);
   }
 
   isFav(name) {
+    // console.log(this.favTeam);
+
     if (this.favTeam != null) {
       if (name === this.favTeam.name) {
         return true;

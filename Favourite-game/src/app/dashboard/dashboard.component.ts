@@ -26,8 +26,4 @@ export class DashboardComponent implements OnInit {
   // }
 
   ngOnInit() {}
-  setfavouriteTeam(event) {
-    this.favouriteTeam = event;
-    this.dataservice.setFavTeam(this.favouriteTeam);
-  }
 }
