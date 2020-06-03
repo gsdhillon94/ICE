@@ -1,9 +1,19 @@
-<div *ngIf="favouriteTeam == null" class="select-team-heading">
-  Select a Team to Begin
-</div>
 <div *ngIf="favouriteTeam != null">
-  <div class="col-sm-12 favTeam">
-    <h1>{{ favouriteTeam.name }}</h1>
+  <div>
+    <div class="col-sm-3">
+      <select
+        name="TeamSelectionDropdown"
+        #TeamSelectionDropdown
+        [(ngModel)]="favouriteTeam"
+      >
+        <option *ngFor="let team of teams" [ngValue]="team">
+          {{ team.name }}
+        </option>
+      </select>
+    </div>
+    <div class="col-sm-9 favTeam">
+      <h1>{{ favouriteTeam.name }}</h1>
+    </div>
   </div>
   <div class="col-sm-12 button-nav">
     <button
@@ -30,7 +40,7 @@
     >
       Upcoming Games
     </button>
-    
+
     <button
       class="nav-button"
       value="Predictions"
@@ -39,7 +49,7 @@
     >
       Predictions
     </button>
-    
+
     <button
       class="nav-button"
       value="PastPredictions"
@@ -48,16 +58,15 @@
     >
       PastPredictions
     </button>
-    
+
     <button
-    class="nav-button"
-    value="Standings"
-    [ngClass]="{ selected: isSelected('Standings') }"
-    (click)="setActive($event)"
-  >
-  Standings
-  </button>
-  
+      class="nav-button"
+      value="Standings"
+      [ngClass]="{ selected: isSelected('Standings') }"
+      (click)="setActive($event)"
+    >
+      Standings
+    </button>
 
     <button
       class="nav-button"
@@ -67,13 +76,15 @@
     >
       Games Nearby
     </button>
-    
   </div>
   <div class="col-sm-12" *ngIf="activeTab === 'All Games'">
     <app-all-games [favouriteTeam]="favouriteTeam"></app-all-games>
   </div>
   <div class="col-sm-12" *ngIf="activeTab === 'H2H Games'">
-    <app-h2-hgames></app-h2-hgames>
+    <app-h2-hgames
+      [favouriteTeam]="favouriteTeam"
+      [teams]="teams"
+    ></app-h2-hgames>
   </div>
   <div class="col-sm-12" *ngIf="activeTab === 'Upcoming Games'">
     <app-upcoming-games [favouriteTeam]="favouriteTeam"></app-upcoming-games>

@@ -2,7 +2,6 @@ import { Component, OnInit } from "@angular/core";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { DataServiceService } from "../data-service/data-service.service";
 import { Team } from "./team";
-import { Teams } from "src/app/teams";
 
 @Component({
   selector: "app-dashboard",
@@ -11,13 +10,13 @@ import { Teams } from "src/app/teams";
 })
 export class DashboardComponent implements OnInit {
   favouriteTeam: Team;
-  teams: Teams[];
+  teams: Team[];
 
-  constructor(private dataservice: DataServiceService) {}
-
-  ngOnInit() {
+  constructor(private dataservice: DataServiceService) {
     this.allTeams();
   }
+
+  ngOnInit() {}
 
   allTeams(): void {
     this.dataservice.getAllTeamsHttp().subscribe((temp) => {
@@ -26,10 +25,6 @@ export class DashboardComponent implements OnInit {
   }
 
   navigation(team) {
-    this.favouriteTeam = team;
-  }
-
-  setFavTeam2(team) {
     this.favouriteTeam = team;
   }
 

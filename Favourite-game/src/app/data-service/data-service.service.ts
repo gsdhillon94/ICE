@@ -17,12 +17,20 @@ import { isNgTemplate } from "@angular/compiler";
 })
 export class DataServiceService {
   public favouriteTeam: Subject<Team> = new Subject<Team>();
-
+  teams: Team[];
   public allMatches: Game[];
   upComingMatches = (nextGames as any).default;
 
   constructor(private http: HttpClient) {
     this.setAllMatches();
+  }
+
+  setTeams(teams) {
+    this.teams = teams;
+  }
+
+  getSavedTeams(): Team[] {
+    return this.teams;
   }
 
   getTeams(): Observable<Team[]> {
@@ -37,7 +45,7 @@ export class DataServiceService {
       );
   }
 
-  getAllMatches() {
+  getAllMatches(): Game[] {
     return this.allMatches;
   }
 
@@ -217,16 +225,18 @@ export class DataServiceService {
   }
 
   getMatchesRivals(team1, team2) {
-    // let data = [{}];
-    // this.allMatches.games.forEach((match) => {
-    //   if (
-    //     (match.hteam == team1 || match.ateam == team1) &&
-    //     (match.hteam == team2 || match.ateam == team2)
-    //   ) {
-    //     data.push(match);
-    //   }
-    // });
+    let data = [{}];
+    this.allMatches.forEach((match) => {
+      if (
+        (match.hteam == team1 || match.ateam == team1) &&
+        (match.hteam == team2 || match.ateam == team2)
+      ) {
+        data.push(match);
+      }
+    });
+    console.log(data);
+
     // data.shift();
-    // return data;
+    return data;
   }
 }

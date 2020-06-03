@@ -1,17 +1,25 @@
 <span>select rival team</span>
-<select (change)="onOptionsSelected($event)" [value]="select">
-  <option *ngFor="let team of rivalTeams" [value]="team.name">
-    {{ team.name }}
+<select
+  #rivalTeamSelectionDropdown
+  (change)="onRivalTeamChange(rivalTeamSelectionDropdown.value)"
+>
+  <option value="" disabled="true" [selected]="true">--please select--</option>
+  <option *ngFor="let rival of rivalTeams" [value]="rival.id">
+    {{ rival.name }}
   </option>
 </select>
-<div *ngIf="rivalTeam != ''" class="col-sm-12">
+<div *ngIf="matches.length != 0" class="col-sm-12">
   <div class="row">
-    <div class="col-sm-4 heading">Winning team</div>
-    <div class="col-sm-4 heading">Year</div>
+    <div class="col-sm-3 heading">Host Team</div>
+    <div class="col-sm-3 heading">Arriving Team</div>
+    <div class="col-sm-3 heading">Winner</div>
+    <div class="col-sm-3 heading">Year</div>
   </div>
-  <div class="row" *ngFor="let team of getAllMatches()">
-    <div class="col-sm-4 value">{{ team.winner }}</div>
-    <div class="col-sm-4 value">{{ team.year }}</div>
+  <div class="row" *ngFor="let match of matches">
+    <div class="col-sm-3 value">{{ match.hteam }}</div>
+    <div class="col-sm-3 value">{{ match.ateam }}</div>
+    <div class="col-sm-3 value">{{ match.winner }}</div>
+    <div class="col-sm-3 value">{{ match.year }}</div>
   </div>
 </div>
 

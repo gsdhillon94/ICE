@@ -10,17 +10,23 @@ import { Team } from "../dashboard/team";
 export class DetailComponent implements OnInit {
   favouriteTeam: Team;
   activeTab = "All Games";
-
+  teams: Team[];
   constructor(private dataservice: DataServiceService) {
+    this.allTeams();
     this.getFavTeam();
   }
 
   getFavTeam() {
     this.dataservice.favouriteTeam.subscribe((team) => {
       this.favouriteTeam = team;
-      console.log(this.favouriteTeam);
     });
   }
+  allTeams(): void {
+    this.dataservice.getAllTeamsHttp().subscribe((temp) => {
+      this.teams = temp;
+    });
+  }
+
   ngOnInit() {}
 
   setActive(event) {
