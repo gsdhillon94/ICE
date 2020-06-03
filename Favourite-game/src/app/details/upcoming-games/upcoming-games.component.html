@@ -1,8 +1,7 @@
-
 <h4 class="upcoming-match-heading">Upcoming matches</h4>
 <ul>
-    <li *ngFor="let match of matches">
-            {{match.ateam}} Vs {{match.hteam}} on {{match.date | date}}
-    </li>
+  <li *ngFor="let match of matches">
+    {{ match.ateam }} Vs {{ match.hteam }} on {{ match.date | date }}
+    <!-- {{ match.sourceid }} -->
+  </li>
 </ul>
-

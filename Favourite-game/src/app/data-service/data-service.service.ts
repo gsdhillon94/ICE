@@ -1,7 +1,6 @@
 import { Injectable } from "@angular/core";
 import { Team } from "./team/team";
 import { Game } from "./game/game";
-import * as nextGames from "../data-service/next-matches/next-matches.json";
 import { Subject, Observable } from "rxjs";
 import { HttpClient } from "@angular/common/http";
 import { Tips } from "../tips";
@@ -11,6 +10,7 @@ import { Teams } from "../teams";
 import { AbstractWebDriver } from "protractor/built/browser";
 import { Standings } from "../standings";
 import { isNgTemplate } from "@angular/compiler";
+import { Tip } from "./prediction/Tip";
 
 @Injectable({
   providedIn: "root",
@@ -19,7 +19,6 @@ export class DataServiceService {
   public favouriteTeam: Subject<Team> = new Subject<Team>();
   teams: Team[];
   public allMatches: Game[];
-  upComingMatches = (nextGames as any).default;
 
   constructor(private http: HttpClient) {
     this.setAllMatches();
@@ -204,13 +203,45 @@ export class DataServiceService {
     this.favouriteTeam.next(team);
   }
 
-  getUpcomingMatches(id) {
-    const matches = this.upComingMatches.games
-      .filter((m) => m.ateamid == id || m.hteamid == id)
-      .sort((a, b) => b.date - a.date)
-      .slice(0, 5);
-
-    return matches;
+  getUpcomingMatches() {
+    return this.http
+      .get("https://api.squiggle.com.au/?q=games;year=2019")
+      .pipe(
+        map((data: any) =>
+          data.games.map(
+            (item: any) =>
+              new Game(
+                item.hteam,
+                item.is_grand_final,
+                item.ascore,
+                item.upated,
+                item.hgoals,
+                item.abehinds,
+                item.hbehinds,
+                item.hscore,
+                item.ateamid,
+                item.id,
+                item.is_final,
+                item.complete,
+                item.winner,
+                item.round,
+                item.year,
+                item.venue,
+                item.winnerteamid,
+                item.agoals,
+                item.ateam,
+                item.date,
+                item.hteamid,
+                item.tz
+              )
+          )
+        )
+      );
+    // const matches = this.upComingMatches.games
+    //   .filter((m) => m.ateamid == id || m.hteamid == id)
+    //   .sort((a, b) => b.date - a.date)
+    //   .slice(0, 5);
+    // return matches;
   }
 
   getAllRivalTeams(teamName) {

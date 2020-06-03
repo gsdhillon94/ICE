@@ -29,10 +29,10 @@ export class NearbyVenueComponent implements OnInit {
   }
 
   getVenues() {
-    this.matches = this.data.getUpcomingMatches(this.favouriteTeam.id);
+    this.matches = this.data.getUpcomingMatches();
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    this.matches = this.data.getUpcomingMatches(this.favouriteTeam.id);
+    this.matches = this.data.getUpcomingMatches();
   }
 }
