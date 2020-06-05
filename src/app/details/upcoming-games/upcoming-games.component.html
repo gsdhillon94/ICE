@@ -1,7 +1,19 @@
-<h4 class="upcoming-match-heading">Upcoming matches</h4>
-<ul>
-  <li *ngFor="let match of matches">
-    {{ match.ateam }} Vs {{ match.hteam }} on {{ match.date | date }}
-    <!-- {{ match.sourceid }} -->
-  </li>
-</ul>
+
+<h3>Upcoming Matches for: {{favouriteTeam.name}}  </h3>
+
+<table class="table" *ngIf ="matches">
+  <thead class="thead-dark">
+  <tr>
+          <th>Away Team</th>
+          <th></th>
+          <th>Home Team</th>
+          <th>Date</th>
+  </tr>
+  </thead>
+  <tr *ngFor='let x of matches'> 
+          <td>{{x.ateam}}</td>
+          <td>VS</td>
+          <td>{{x.hteam}}</td>
+          <td class="demo2">{{x.date | date}}</td>
+  </tr>
+</table>

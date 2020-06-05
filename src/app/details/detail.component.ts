@@ -29,8 +29,9 @@ export class DetailComponent implements OnInit {
 
   ngOnInit() {}
 
-  setActive(event) {
-    this.activeTab = event.target.value;
+  setActive(name) {
+    console.log('setting', event);
+    this.activeTab = name;
   }
 
   isSelected(tab) {

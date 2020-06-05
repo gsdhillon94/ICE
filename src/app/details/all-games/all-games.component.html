@@ -1,13 +1,22 @@
-<div class="col-sm-12">All games played by {{ favouriteTeam.name }}</div>
-<div class="col-sm-12">
-  <div class="row">
-    <div class="col-sm-4 heading">Team 1</div>
-    <div class="col-sm-4 heading">Team 2</div>
-    <div class="col-sm-4 heading">Year</div>
-  </div>
-  <div class="row" *ngFor="let team of getAllMatches()">
-    <div class="col-sm-4 value">{{ team.ateam }}</div>
-    <div class="col-sm-4 value">{{ team.hteam }}</div>
-    <div class="col-sm-4 value">{{ team.year }}</div>
-  </div>
-</div>
+
+<h3>Games so far for: {{ favouriteTeam.name }}</h3>
+
+<table class="table">
+        
+        <thead class="thead-dark">
+        <tr>
+                <th>Away Team</th>
+                <th></th>
+                <th>Home Team</th>
+                <th>Winner</th>
+                <th>Venue</th>
+        </tr>
+        </thead>
+        <tr *ngFor='let x of getAllMatches()'> 
+                <td>{{x.ateam}}</td>
+                <td> VS </td>
+                <td>{{x.hteam}}</td>
+                <td class="demo1">{{x.winner}}</td>
+                <td >{{x.venue}}</td>
+        </tr>
+</table>
