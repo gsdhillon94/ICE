@@ -1,0 +1,15 @@
+
+
+    <table class="table" *ngIf ="Standings">
+    <thead class="thead-dark">
+        <tr>
+        <th>NAME</th>
+        <th>RANK</th>
+
+    </tr>
+    </thead>
+    <tr *ngFor="let Standing of Standings"> 
+            <td>{{Standing.name}}</td>
+            <td class="Demo">{{Standing.rank}}</td>
+    </tr>
+</table>

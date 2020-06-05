@@ -1,13 +1,14 @@
-<p>standings works!</p>
 
-<p *ngIf='favouriteTeam'> {{favouriteTeam.name}} </p>
-
-<table class="table" *ngIf ="Standings">
-        
+  <table class="table" *ngIf ="Standings">
+    <thead class="thead-dark">
+        <tr><th>NAME:  {{Standings[0].name}} </th></tr>
+    </thead>
     
-    <tr *ngFor='let x of Standingss'> 
-            <td>{{x.name}}</td>
-            <td>{{x.percentage}}</td>
-            <td>{{x.forr}}</td>
-    </tr>
-</table>
+    <tr><td>RANK:  {{Standings[0].rank}} </td></tr>
+    <tr><td>WINS:  {{Standings[0].wins}} </td></tr>
+    <tr><td>LOSSES:  {{Standings[0].losses}} </td></tr>
+    <tr><td>GOALS FOR:  {{Standings[0].goals_for}} </td></tr>
+    <tr><td>GOALS AGAINST:  {{Standings[0].goals_against}} </td></tr>
+    <tr><td>DRAWS:  {{Standings[0].draws}} </td></tr>
+
+    </table>

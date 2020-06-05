@@ -8,7 +8,6 @@ export class Standings {
         public pts:number,
         public behinds_for:number,
         public draws:number,
-        public forr:number,
         public wins:number,
         public against:number,
         public losses:number,

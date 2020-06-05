@@ -16,6 +16,7 @@ import { PredictionsComponent } from "./details/predictions/predictions.componen
 import { PastPredictionsComponent } from "./details/past-predictions/past-predictions.component";
 import { StandingsComponent } from "./details/standings/standings.component";
 import { AgmCoreModule } from "@agm/core";
+import { RankingsComponent } from './details/rankings/rankings.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { AgmCoreModule } from "@agm/core";
     PredictionsComponent,
     PastPredictionsComponent,
     StandingsComponent,
+    RankingsComponent,
   ],
   imports: [
     BrowserModule,

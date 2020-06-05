@@ -1,6 +1,6 @@
 import { Component, OnInit,Input } from '@angular/core';
 import { Team } from 'src/app/dashboard/team';
-import { Tips} from 'src/app/tips'
+import { Tips} from 'src/app/data-service/tips'
 import { DataServiceService } from 'src/app/data-service/data-service.service';
 
 @Component({

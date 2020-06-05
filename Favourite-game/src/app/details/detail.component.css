@@ -12,6 +12,7 @@
   background: none;
   border: none;
   border-left: 1px solid;
+  color:grey;
 }
 
 .nav-button:nth-child(1) {

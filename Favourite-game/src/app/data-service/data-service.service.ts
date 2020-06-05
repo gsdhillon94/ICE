@@ -3,12 +3,12 @@ import { Team } from "./team/team";
 import { Game } from "./game/game";
 import { Subject, Observable } from "rxjs";
 import { HttpClient } from "@angular/common/http";
-import { Tips } from "../tips";
+import { Tips } from "./tips";
 import { map } from "rxjs/operators";
 import { of, from } from "rxjs";
-import { Teams } from "../teams";
+import { Teams } from "./teams";
 import { AbstractWebDriver } from "protractor/built/browser";
-import { Standings } from "../standings";
+import { Standings } from "./standings";
 import { isNgTemplate } from "@angular/compiler";
 import { Tip } from "./prediction/Tip";
 
@@ -63,7 +63,6 @@ export class DataServiceService {
                 item.pts,
                 item.behinds_for,
                 item.draws,
-                item.forr,
                 item.wins,
                 item.against,
                 item.losses,
