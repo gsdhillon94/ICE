@@ -12,9 +12,7 @@ export class AllGamesComponent implements OnInit {
   @Input() favouriteTeam: Team;
 
   allGames: Game[];
-  constructor(private data: DataServiceService) {
-    this.allGames = this.data.getAllMatches();
-  }
+  constructor(private data: DataServiceService) {}
 
   ngOnInit() {}
 

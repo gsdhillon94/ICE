@@ -1,4 +1,25 @@
-<ul>
-  Nearby Venues for your favourite team:
-</ul>
-<li *ngFor="let match of matches">{{ match.venue }}</li>
+<!-- <form>
+  <agm-map
+    style="height: 300px;"
+    [latitude]="lat"
+    [longitude]="lng"
+    [zoom]="zoom"
+    (mapClick)="mapClicked($event)"
+  >
+    <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+  </agm-map>
+</form> -->
+<div class="col-sm-12">
+  <div class="row">
+    <div class="col-sm-3 heading">Team 1</div>
+    <div class="col-sm-3 heading">Team 2</div>
+    <div class="col-sm-3 heading">Location</div>
+    <div class="col-sm-3 heading">Distance</div>
+  </div>
+  <div class="row" *ngFor="let match of getMatchesNearby()">
+    <div class="col-sm-3 value">{{ match.ateam }}</div>
+    <div class="col-sm-3 value">{{ match.hteam }}</div>
+    <div class="col-sm-3 value">{{ match.venue }}</div>
+    <div class="col-sm-3 value">{{ match.distance }}</div>
+  </div>
+</div>

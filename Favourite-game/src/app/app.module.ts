@@ -15,6 +15,7 @@ import { NearbyVenueComponent } from "./details/nearby-venue/nearby-venue.compon
 import { PredictionsComponent } from "./details/predictions/predictions.component";
 import { PastPredictionsComponent } from "./details/past-predictions/past-predictions.component";
 import { StandingsComponent } from "./details/standings/standings.component";
+import { AgmCoreModule } from "@agm/core";
 
 @NgModule({
   declarations: [
@@ -30,7 +31,15 @@ import { StandingsComponent } from "./details/standings/standings.component";
     PastPredictionsComponent,
     StandingsComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    FormsModule,
+    AgmCoreModule.forRoot({
+      apiKey: "AIzaSyDNKz1vuaimJ7ZuwlsklotXG0ccfuK9i4U",
+    }),
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })

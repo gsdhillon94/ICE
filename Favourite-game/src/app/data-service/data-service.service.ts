@@ -270,4 +270,16 @@ export class DataServiceService {
     // data.shift();
     return data;
   }
+
+  getDistance(venue, lat, lng) {
+    let url =
+      "https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=" +
+      lat +
+      "," +
+      lng +
+      "&destinations=" +
+      venue +
+      "&key=AIzaSyDNKz1vuaimJ7ZuwlsklotXG0ccfuK9i4U";
+    return this.http.get(url);
+  }
 }

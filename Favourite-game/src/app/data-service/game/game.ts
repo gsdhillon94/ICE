@@ -21,6 +21,7 @@ export class Game {
     public ateam: string,
     public date: Date,
     public hteamid: number,
-    public tz: string
+    public tz: string,
+    public distance?: any
   ) {}
 }

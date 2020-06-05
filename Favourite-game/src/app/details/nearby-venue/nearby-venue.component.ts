@@ -1,6 +1,7 @@
-import { Component, OnInit, Input, SimpleChanges } from "@angular/core";
+import { Component, OnInit, Input, ViewChild } from "@angular/core";
 import { DataServiceService } from "../../data-service/data-service.service";
-import { Team } from "src/app/dashboard/team";
+import { VenueDistance } from "../../data-service/venueDistance/venue-distance";
+import { Game } from "../../data-service/game/game";
 
 @Component({
   selector: "app-nearby-venue",
@@ -8,31 +9,65 @@ import { Team } from "src/app/dashboard/team";
   styleUrls: ["./nearby-venue.component.css"],
 })
 export class NearbyVenueComponent implements OnInit {
-  @Input() favouriteTeam: Team;
-  constructor(private data: DataServiceService) {}
-  matches;
-  ngOnInit() {
-    this.getVenues();
+  lng: number = 0;
+  lat: number = 0;
+  allGames: Game[];
+  distinctVenues: VenueDistance[];
+  constructor(private dataService: DataServiceService) {
+    this.allGames = this.dataService.getAllMatches();
+    this.distinctVenues = Array.from(
+      new Set(this.allGames.map((x) => x.venue))
+    ).map((venue) => {
+      return {
+        venue: venue,
+        distance: 0,
+      };
+    });
+    this.formatVenues();
+    this.getCurrentLocation();
+    this.getDistanceForVenues();
   }
-
-  getGeolocation() {
-    console.log(navigator.geolocation);
+  ngOnInit() {}
+  formatVenues() {
+    let i = 0;
+    this.distinctVenues.forEach((venue) => {
+      this.distinctVenues[i].venue = venue.venue.replace(/ /, "+");
+      i++;
+    });
+    console.log(this.distinctVenues);
+  }
+  getDistanceForVenues() {
+    let x = 0;
+    this.distinctVenues.forEach((venue) => {
+      this.dataService
+        .getDistance(venue, this.lng, this.lat)
+        .subscribe((data) => {
+          this.distinctVenues[x].distance = data;
+        });
+    });
+    let y = 0;
+    let z = 0;
+    this.allGames.forEach((game) => {
+      this.distinctVenues.forEach((venue) => {
+        z = 0;
+        if (game.venue == venue.venue) {
+          this.allGames[y].distance = this.distinctVenues[z].distance;
+        }
+      });
+    });
+  }
+  getCurrentLocation() {
     if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(this.displayLocationInfo);
+      navigator.geolocation.getCurrentPosition((position: Position) => {
+        if (position) {
+          this.lat = position.coords.latitude;
+          this.lng = position.coords.longitude;
+        }
+      });
     }
   }
-  displayLocationInfo(position) {
-    const lng = position.coords.longitude;
-    const lat = position.coords.latitude;
 
-    console.log(`longitude: ${lng} | latitude: ${lat}`);
-  }
-
-  getVenues() {
-    this.matches = this.data.getUpcomingMatches();
-  }
-
-  ngOnChanges(changes: SimpleChanges) {
-    this.matches = this.data.getUpcomingMatches();
+  getMatchesNearby() {
+    return this.allGames;
   }
 }
